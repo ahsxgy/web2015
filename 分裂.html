@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.ball{width:400px;height:400px;background: #000;border-radius: 50%;margin: 0 auto;}
+			.ball div{float: left; width: 50%;height: 50%;border-radius: 50%;background: #f00;}
+		</style>
+	</head>
+	<body>
+		<div class="ball"></div>
+		<script>
+			var ballNode=document.querySelector(".ball");
+			ballNode.onclick=fenlie;
+			
+			function fenlie(){
+				for(var i=0;i<4;i++){
+					var divNode=document.createElement("div");
+					divNode.onclick=fenlie;
+					divNode.style.background=color();
+					this.appendChild(divNode);
+				}
+				this.style.background="none";
+				this.onclick=null;
+			}
+			function color(){
+				var colorStr="rgb(";
+				for(var i=0;i<3;i++){
+					var randomNum=Math.floor(Math.random()*256);
+					colorStr+=randomNum+",";
+				}
+				colorStr=colorStr.slice(0,-1);
+				colorStr+=")";
+				return colorStr;
+			}
+			
+		</script>
+	</body>
+</html>
